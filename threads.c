@@ -11,6 +11,7 @@
 #include <signal.h>
 #include <util/util.h>
 #include <sys/time.h>
+#include <unistd.h>
 
 // declare threads (global space)
 pthread_t thread1;
@@ -83,7 +84,7 @@ void thread1_critical_section(void) {
         usleep(exec_period_usecs);
         gettimeofday(&ts, NULL);
         printf("000[THREAD 1] Executing critical section of Thread1. ");
-        printf("%06lu.%06lu: Thread1 run_cnt = %d\n", (unsigned int)ts.tv_sec, (unsigned int)ts.tv_usec, run_cnt);
+        printf("%06u.%06u: Thread1 run_cnt = %d\n", (unsigned int)ts.tv_sec, (unsigned int)ts.tv_usec, run_cnt);
         run_cnt += 1;
     }
 }
@@ -103,7 +104,7 @@ void thread2_critical_section(void) {
         usleep(exec_period_usecs);
         gettimeofday(&ts, NULL);
         printf("\nXXX [THREAD 2] Executing critical section of Thread2 ");
-        printf("%06lu.%06lu: Thread2 run_cnt = %d\n\n", (unsigned int)ts.tv_sec, (unsigned int)ts.tv_usec, run_cnt);
+        printf("%06u.%06u: Thread2 run_cnt = %d\n\n", (unsigned int)ts.tv_sec, (unsigned int)ts.tv_usec, run_cnt);
         run_cnt += 1;
     }
 }
